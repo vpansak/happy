@@ -113,8 +113,12 @@ function NetflixIntro({ onDone }: { onDone: () => void }) {
 }
 
 /* ───────────────── Lock screen ───────────────── */
-function LockScreen() {
+function LockScreen({ onUnlock }: { onUnlock: () => void }) {
   const [now, setNow] = useState(Date.now());
+  const [showPass, setShowPass] = useState(false);
+  const [password, setPassword] = useState("");
+  const [passError, setPassError] = useState(false);
+
   useEffect(() => {
     const t = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(t);
@@ -128,6 +132,16 @@ function LockScreen() {
   useEffect(() => {
     if (diff <= 0) window.location.reload();
   }, [diff]);
+
+  const handleUnlockSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password.toLowerCase().trim() === "motu") {
+      onUnlock();
+    } else {
+      setPassError(true);
+      setTimeout(() => setPassError(false), 2000);
+    }
+  };
 
   const Cell = ({ v, l }: { v: number; l: string }) => (
     <div className="glass-card flex min-w-[68px] flex-col items-center rounded-2xl px-3 py-3 sm:min-w-[88px] sm:px-5 sm:py-4">
@@ -176,6 +190,57 @@ function LockScreen() {
         <p className="mt-5 text-sm italic text-[color:var(--muted-foreground)]">
           A story that survived everything… made with all my love by <b>Alok Singh</b>
         </p>
+
+        {/* Small Bypass Key */}
+        <div className="mt-6 flex flex-col items-center justify-center">
+          {!showPass ? (
+            <button
+              onClick={() => setShowPass(true)}
+              className="text-muted-foreground/30 hover:text-[color:var(--rose)] transition-colors duration-300 text-lg focus:outline-none"
+              title="Unlock backdoor"
+            >
+              🔑
+            </button>
+          ) : (
+            <motion.form
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              onSubmit={handleUnlockSubmit}
+              className="flex flex-col items-center gap-2 mt-2 w-full max-w-xs"
+            >
+              <div className="flex gap-2 w-full">
+                <input
+                  type="password"
+                  placeholder="Enter secret code..."
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className={`w-full px-4 py-2 text-center text-sm rounded-full border bg-white/60 backdrop-blur-sm focus:outline-none focus:ring-2 transition-all duration-300 ${
+                    passError
+                      ? "border-red-400 focus:ring-red-400/50"
+                      : "border-rose-200 focus:ring-rose-400/50 focus:border-rose-400"
+                  }`}
+                  autoFocus
+                />
+                <button
+                  type="submit"
+                  className="rounded-full bg-[color:var(--rose)] text-white px-4 py-2 text-sm font-semibold hover:opacity-90 transition-opacity"
+                >
+                  Go
+                </button>
+              </div>
+              {passError && (
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-xs text-red-500 font-medium"
+                >
+                  Wrong code, try again! 🤫
+                </motion.span>
+              )}
+            </motion.form>
+          )}
+        </div>
       </motion.div>
     </div>
   );
@@ -770,11 +835,12 @@ function _Section({ id, title, emoji, children }: { id: string; title: string; e
 function BirthdayPage() {
   const [introDone, setIntroDone] = useState(false);
   const [now, setNow] = useState(() => Date.now());
+  const [byPassed, setByPassed] = useState(false);
   useEffect(() => {
     const t = setInterval(() => setNow(Date.now()), 30000);
     return () => clearInterval(t);
   }, []);
-  const locked = now < UNLOCK_AT;
+  const locked = now < UNLOCK_AT && !byPassed;
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
@@ -785,7 +851,7 @@ function BirthdayPage() {
         {!introDone && <NetflixIntro key="intro" onDone={() => setIntroDone(true)} />}
       </AnimatePresence>
 
-      {introDone && locked && <LockScreen />}
+      {introDone && locked && <LockScreen onUnlock={() => setByPassed(true)} />}
 
       {introDone && !locked && (
         <>
