@@ -54,7 +54,7 @@ function NetflixIntro({ onDone }: { onDone: () => void }) {
             className="font-serif-display text-3xl sm:text-5xl font-black tracking-[0.35em] text-red-600"
             style={{ textShadow: "0 0 24px rgba(239,68,68,0.9), 0 0 60px rgba(239,68,68,0.6)" }}
           >
-            NETFLIX ORIGINAL
+            HAPPY BDAY MOTU
           </motion.h1>
         )}
         {phase === 1 && (
