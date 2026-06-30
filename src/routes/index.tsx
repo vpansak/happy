@@ -785,39 +785,6 @@ function Hero() {
   );
 }
 
-/* ───────────────── Final unlock ───────────────── */
-
-function FinalUnlock() {
-  return (
-    <section id="unlock" className="relative z-10 mx-auto w-full max-w-3xl px-4 pb-20 pt-4 text-center">
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.9 }}
-        className="glass-card relative overflow-hidden rounded-[2rem] p-10 sm:p-14"
-      >
-        <motion.div
-          animate={{ rotate: [0, -6, 6, -4, 4, 0], scale: [1, 1.06, 1] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          className="mx-auto text-7xl"
-        >
-          🎁
-        </motion.div>
-        <h3 className="font-serif-display mt-5 text-3xl sm:text-4xl text-[color:var(--plum)]">
-          One last surprise for you
-        </h3>
-        <p className="mt-3 text-[color:var(--muted-foreground)]">
-          Tap below to unlock your special birthday gift, Motu ❤️
-        </p>
-        <Link to="/redeem-gift" className="btn-romance mt-7 inline-block text-lg">
-          🎁 Unlock My Surprise Gift ❤️
-        </Link>
-      </motion.div>
-    </section>
-  );
-}
-
 /* ───────────────── Section wrapper ───────────────── */
 
 function _Section({ id, title, emoji, children }: { id: string; title: string; emoji: string; children: ReactNode }) {
@@ -866,7 +833,6 @@ function BirthdayPage() {
           <LoveLettersFeed />
           <Promise />
           <InteractiveCakeSection />
-          <FinalUnlock />
           <footer className="relative z-10 py-10 text-center text-sm text-[color:var(--muted-foreground)]">
             Made with <span className="text-[color:var(--rose)]">❤</span> by Alok Singh, forever for Motu.
           </footer>

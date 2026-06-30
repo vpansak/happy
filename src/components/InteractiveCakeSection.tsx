@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
 import { supabase } from "@/integrations/supabase/client";
+import { Link } from "@tanstack/react-router";
 
-// Import mummy, papa and didi photos (copied to assets)
+// Import family photos (copied to assets)
 import mummyPhoto from "@/assets/photos/mummy.jpg";
 import papaPhoto from "@/assets/photos/papa.jpg";
 import didiPhoto from "@/assets/photos/didi.jpg";
+import heroPhoto from "@/assets/photos/1781266167807.png.asset.json";
 
 // Define the structure of family members
 interface FamilyMember {
@@ -395,15 +397,29 @@ export default function InteractiveCakeSection() {
           </div>
         )}
 
-        {/* Step 4: Write Wish */}
+        {/* Step 4: Write Wish with Big Frame */}
         {step === "wish" && (
           <div className="flex flex-col items-center">
-            <h3 className="font-serif-display text-xl sm:text-2xl text-[color:var(--plum)] mb-2">
+            <h3 className="font-serif-display text-xl sm:text-3xl text-[color:var(--plum)] mb-2">
               Write a Wish for Motu! ✍️❤️
             </h3>
             <p className="text-sm text-[color:var(--muted-foreground)] mb-6">
-              Write your special birthday wish. It will open in WhatsApp automatically!
+              Aapka wish direct WhatsApp par send karne ka option niche milega.
             </p>
+
+            {/* Big Polaroid Style Frame */}
+            <div className="relative mb-8 p-4 bg-white shadow-soft rounded-3xl max-w-sm w-full border border-pink-100 flex flex-col items-center">
+              <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-rose-50 shadow-inner">
+                <img
+                  src={heroPhoto.url}
+                  alt="Motu and Alok"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="font-script mt-3 text-2xl text-[color:var(--rose)]">
+                Motu & Alok ❤️
+              </div>
+            </div>
 
             <form onSubmit={handleWishSubmit} className="w-full max-w-md flex flex-col gap-4">
               <textarea
@@ -412,7 +428,7 @@ export default function InteractiveCakeSection() {
                 placeholder="Type your beautiful birthday wish here for Motu..."
                 value={wish}
                 onChange={(e) => setWish(e.target.value)}
-                className="w-full px-4 py-3 rounded-2xl border border-rose-200 bg-white/60 focus:outline-none focus:ring-2 focus:ring-rose-400/50 focus:border-rose-400 text-sm placeholder:text-muted-foreground/60 transition-all"
+                className="w-full px-4 py-3 rounded-2xl border border-rose-200 bg-white/60 focus:outline-none focus:ring-2 focus:ring-rose-400/50 focus:border-rose-400 text-sm placeholder:text-muted-foreground/60 transition-all shadow-inner"
               />
               <button
                 type="submit"
@@ -425,22 +441,27 @@ export default function InteractiveCakeSection() {
           </div>
         )}
 
-        {/* Step 5: Completed state */}
+        {/* Step 5: Completed state - One Last Surprise */}
         {step === "done" && (
           <div className="flex flex-col items-center py-6">
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: [1, 1.2, 1] }}
-              className="text-7xl mb-4"
+              className="text-7xl mb-4 animate-heartbeat"
             >
-              🎉💖
+              🎉🎁💖
             </motion.div>
-            <h3 className="font-serif-display text-2xl sm:text-3xl text-[color:var(--plum)] mb-2">
-              Celebration Completed!
+            <h3 className="font-serif-display text-3xl sm:text-4xl text-[color:var(--plum)] mb-2">
+              One last surprise for you
             </h3>
-            <p className="text-sm text-[color:var(--muted-foreground)] max-w-md mb-6">
-              Aapka wish WhatsApp par share hone ke liye open ho chuka hai! Har koi celebrates together! ❤️
+            <p className="text-sm sm:text-base text-[color:var(--rose)] max-w-md mb-8">
+              Tap below to unlock your special birthday gift, Motu ❤️
             </p>
+
+            <Link to="/redeem-gift" className="btn-romance inline-block text-lg px-8 py-4 mb-8">
+              🎁 Unlock My Surprise Gift ❤️
+            </Link>
+
             <div className="relative w-48 h-48 rounded-[2rem] overflow-hidden border-2 border-rose-200 shadow-md">
               <img
                 src={mummyPhoto}
@@ -450,9 +471,9 @@ export default function InteractiveCakeSection() {
             </div>
             <button
               onClick={() => setStep("candle")}
-              className="mt-6 px-6 py-2 border border-rose-300 rounded-full text-xs text-[color:var(--rose)] hover:bg-rose-50 transition-colors"
+              className="mt-8 px-6 py-2 border border-rose-300 rounded-full text-xs text-[color:var(--rose)] hover:bg-rose-50 transition-colors"
             >
-              Celebration restart karein 🎂
+              Celebration restart/review 🎂
             </button>
           </div>
         )}
