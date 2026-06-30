@@ -1,0 +1,114 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Dancing Script", cursive;
+  --font-serif: "Playfair Display", serif;
+  --font-body: "Quicksand", sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-rose: var(--rose);
+  --color-blush: var(--blush);
+  --color-cream: var(--cream);
+  --color-gold: var(--gold);
+  --color-plum: var(--plum);
+}
+
+:root {
+  --background: oklch(0.98 0.015 25);
+  --foreground: oklch(0.28 0.08 350);
+  --primary: oklch(0.68 0.18 10);
+  --primary-foreground: oklch(0.99 0 0);
+  --accent: oklch(0.78 0.14 340);
+  --accent-foreground: oklch(0.25 0.08 350);
+  --muted: oklch(0.95 0.025 20);
+  --muted-foreground: oklch(0.5 0.05 350);
+  --card: oklch(0.995 0.008 30);
+  --card-foreground: oklch(0.28 0.08 350);
+  --border: oklch(0.88 0.04 20);
+  --rose: oklch(0.68 0.18 10);
+  --blush: oklch(0.85 0.09 15);
+  --cream: oklch(0.97 0.025 60);
+  --gold: oklch(0.78 0.13 75);
+  --plum: oklch(0.45 0.12 320);
+  --radius: 1rem;
+  --gradient-romance: linear-gradient(135deg, oklch(0.92 0.06 20), oklch(0.88 0.07 340), oklch(0.95 0.04 60));
+  --gradient-sunset: linear-gradient(135deg, oklch(0.78 0.14 20), oklch(0.7 0.16 340));
+  --shadow-soft: 0 10px 40px -10px oklch(0.7 0.15 10 / 0.25);
+  --shadow-petal: 0 20px 60px -20px oklch(0.6 0.18 340 / 0.4);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  body {
+    background: var(--gradient-romance);
+    background-attachment: fixed;
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+  }
+  h1, h2, h3 { font-family: var(--font-serif); }
+}
+
+@utility font-script { font-family: var(--font-display); }
+@utility font-serif-display { font-family: var(--font-serif); }
+
+@utility glass-card {
+  background: color-mix(in oklab, white 75%, transparent);
+  backdrop-filter: blur(12px);
+  border: 1px solid color-mix(in oklab, var(--rose) 20%, transparent);
+  box-shadow: var(--shadow-soft);
+}
+
+@utility btn-romance {
+  background: var(--gradient-sunset);
+  color: white;
+  padding: 0.85rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  box-shadow: var(--shadow-petal);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  &:hover { transform: translateY(-2px) scale(1.03); }
+  &:active { transform: scale(0.98); }
+}
+
+@keyframes float-up {
+  0% { transform: translateY(100vh) scale(0.5) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-10vh) scale(1.2) rotate(360deg); opacity: 0; }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+@keyframes flicker {
+  0%, 100% { transform: scaleY(1) rotate(-2deg); opacity: 1; }
+  50% { transform: scaleY(1.1) rotate(2deg); opacity: 0.9; }
+}
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.15); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.1); }
+}
+@utility animate-heartbeat { animation: heartbeat 1.4s ease-in-out infinite; }
+@utility animate-flicker { animation: flicker 0.5s ease-in-out infinite; transform-origin: bottom center; }
+@utility animate-twinkle { animation: twinkle 2.5s ease-in-out infinite; }
+
+/* Hide the Lovable badge/watermark */
+#lovable-badge {
+  display: none !important;
+}
+
