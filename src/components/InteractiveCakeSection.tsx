@@ -3,8 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
 import { supabase } from "@/integrations/supabase/client";
 
-// Import mummy photo (copied to assets)
+// Import mummy and papa photos (copied to assets)
 import mummyPhoto from "@/assets/photos/mummy.jpg";
+import papaPhoto from "@/assets/photos/papa.jpg";
 
 // Define the structure of family members
 interface FamilyMember {
@@ -26,7 +27,7 @@ const FAMILY_MEMBERS: FamilyMember[] = [
   {
     name: "Papa",
     relation: "Father",
-    photoUrl: null, // Placeholder
+    photoUrl: papaPhoto,
     initials: "P",
     gradient: "from-blue-400 to-indigo-500",
   },
@@ -38,10 +39,10 @@ const FAMILY_MEMBERS: FamilyMember[] = [
     gradient: "from-purple-400 to-fuchsia-500",
   },
   {
-    name: "Jiju",
-    relation: "Brother-in-law",
+    name: "Honey",
+    relation: "Husband",
     photoUrl: null, // Placeholder
-    initials: "J",
+    initials: "H",
     gradient: "from-amber-400 to-orange-500",
   },
 ];
