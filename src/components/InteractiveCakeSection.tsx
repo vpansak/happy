@@ -135,7 +135,7 @@ export default function InteractiveCakeSection() {
       setStep("done");
 
       // Redirect to WhatsApp with pre-filled wish text
-      const whatsappText = `Motu, Happy Birthday! ❤️🎂 Here is my special wish for you:\n\n"${wish.trim()}"\n\nSee your birthday surprise here: https://client-ten-lemon-55.vercel.app`;
+      const whatsappText = `Motu, Happy Birthday! ❤️🎂 Here is my special wish for you:\n\n"${wish.trim()}"\n\nSee your birthday surprise here: https://happybdaymotu.vercel.app`;
       const encodedText = encodeURIComponent(whatsappText);
       const whatsappUrl = `https://api.whatsapp.com/send?phone=918738869635&text=${encodedText}`;
 
