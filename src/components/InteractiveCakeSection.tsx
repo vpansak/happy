@@ -9,7 +9,7 @@ import mummyPhoto from "@/assets/photos/mummy.jpg";
 import papaPhoto from "@/assets/photos/papa.jpg";
 import didiPhoto from "@/assets/photos/didi.jpg";
 import honeyPhoto from "@/assets/photos/honey.jpg";
-import heroPhoto from "@/assets/photos/1781266167807.png.asset.json";
+import familyPhoto from "@/assets/photos/family.jpg";
 
 // Define the structure of family members
 interface FamilyMember {
@@ -412,13 +412,13 @@ export default function InteractiveCakeSection() {
             <div className="relative mb-8 p-4 bg-white shadow-soft rounded-3xl max-w-sm w-full border border-pink-100 flex flex-col items-center">
               <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-rose-50 shadow-inner">
                 <img
-                  src={heroPhoto.url}
-                  alt="Motu and Alok"
+                  src={familyPhoto}
+                  alt="Happy Birthday Motu"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="font-script mt-3 text-2xl text-[color:var(--rose)]">
-                Motu & Alok ❤️
+                Happy Birthday Motu! 🎂❤️
               </div>
             </div>
 
