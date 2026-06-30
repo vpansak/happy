@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useEffect, useRef, type ReactNode } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import InteractiveCakeSection from "@/components/InteractiveCakeSection";
 
 /* ───────────────── Unlock date ───────────────── */
 const UNLOCK_AT = new Date("2026-08-12T00:00:00+05:30").getTime();
@@ -864,6 +865,7 @@ function BirthdayPage() {
           <Timeline />
           <LoveLettersFeed />
           <Promise />
+          <InteractiveCakeSection />
           <FinalUnlock />
           <footer className="relative z-10 py-10 text-center text-sm text-[color:var(--muted-foreground)]">
             Made with <span className="text-[color:var(--rose)]">❤</span> by Alok Singh, forever for Motu.
