@@ -8,6 +8,7 @@ import { Link } from "@tanstack/react-router";
 import mummyPhoto from "@/assets/photos/mummy.jpg";
 import papaPhoto from "@/assets/photos/papa.jpg";
 import didiPhoto from "@/assets/photos/didi.jpg";
+import honeyPhoto from "@/assets/photos/honey.jpg";
 import heroPhoto from "@/assets/photos/1781266167807.png.asset.json";
 
 // Define the structure of family members
@@ -44,7 +45,7 @@ const FAMILY_MEMBERS: FamilyMember[] = [
   {
     name: "Honey",
     relation: "Husband",
-    photoUrl: null, // Placeholder
+    photoUrl: honeyPhoto,
     initials: "H",
     gradient: "from-amber-400 to-orange-500",
   },
